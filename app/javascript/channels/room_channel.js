@@ -33,8 +33,7 @@ function createRoomChannel(roomId, messages_holder) {
     if (event.keyCode != 13) return false;
 
     event.preventDefault();
-    let message = event.target.value.split("\n").join("").trim();
-
+    let message = event.target.value.replace("\n","").trim();
     if (message == "") return false;
 
     channelRoom.send({message: message});
