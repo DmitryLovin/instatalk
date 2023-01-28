@@ -6,7 +6,7 @@ class OnlineChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    return if ActionCable.server.connections.count { |connection| connection.current_user == current_user } > 0
+    return if ActionCable.server.remote_connections.count { |connection| connection.current_user == current_user } > 0
 
     OnlineService.new(user: current_user, is_online: false).perform
   end
