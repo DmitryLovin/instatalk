@@ -1,7 +1,6 @@
 class PresenceChannel < ApplicationCable::Channel
   def self.user_still_connected?(user)
-    still_there = broadcast_to(user, action: 'presence-check')
-    still_there.present? && still_there.positive?
+    broadcast_to(user, action: 'presence-check').to_i.positive?
   end
 
   def subscribed
